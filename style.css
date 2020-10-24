@@ -1,0 +1,11 @@
+.masthead {
+    padding: 15% ;
+    background-image: url('o.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.masthead-intro {
+    margin-bottom: 0.1em;
+    text-align: center;
+    color: aliceblue;
+}
