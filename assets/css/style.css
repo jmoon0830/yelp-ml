@@ -1,12 +1,15 @@
-#search_bar {
-    /* text-align: right; */
-    /* width: 4cm; */
+/* .search_inputs {
+    text-align: right;
+} */
+
+#search_bar1 {
+    width: 4cm;
     margin: 1%;
 }
 
-#search_button1 {
-    text-align: right;
-}
+/* #search_button1 {
+    float: right;
+} */
 
 #footer_row {
     text-align: center;
@@ -20,9 +23,9 @@
     text-align: center;
 }
 
-#search_form {
+/* #search_form {
     text-align: right;
-}
+} */
 
 /* .test10 {
     background-image: 'https://s3-media0.fl.yelpcdn.com/bphoto/8GJlTUym3WOcfMKF28v2Gw/o.jpg';

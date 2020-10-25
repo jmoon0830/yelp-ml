@@ -54,9 +54,14 @@
                     Yelp Restaurant Data Finder
                 </a>
             </div>
+                <div class="search_inputs">
+                    <span>Place:</span>
+                    <input class="mr-sm-2" id="search_bar1" placeholder="ex: Hattie Bs">
+                    <span>Location:</span>
+                    <input class="mr-sm-2" id="search_bar2" placeholder="ex: Atlanta, GA">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="search_button1">Search</button>
+                </div>
             <!-- <form class="form-inline my-2 my-lg-0" id="search_form"> -->
-                <input class="form-control mr-sm-2" id="search_bar">
-                <button class="btn btn-outline-success my-2 my-sm-0" id="search_button1">Search</button>
             <!-- </form> -->
         </div>
     </nav>
@@ -114,10 +119,9 @@
                 <div class="col-md-4">
                     <div class="info-icon">
                         <div class="icon text-danger">
-                            <i class="pe-7s-pen"></i> 
+                            <i class="pe-7s-clock"></i> 
                         </div>
-                        <h3 class="card-header">Reviews</h3>
-                        <div class="card-body" id="hours">
+                            <div id="hours"></div>
                         </div>
                     </div>
                 </div>
@@ -209,7 +213,8 @@
                 <li class="active">
                     <a href="#testimonial1" role="tab" data-toggle="tab">
                         <div class="image-clients">
-                            <img alt="..." class="img-circle" src="assets/img/faces/face_5.jpg"/>
+                            <img alt="..." class="img-circle" src="https://s3-media2.fl.yelpcdn.com/photo/81TY6v8jrz4tLbP5Oj_vgg/o.jpg" id="person_1"/>
+                            <!-- <img alt="..." class="img-circle" src="assets/img/faces/face_5.jpg" id="person_1"/> -->
                         </div>
                     </a>
                 </li>
@@ -232,17 +237,10 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="testimonial1">
-                    <p class="description">
-                        And I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. Now there is only one important color... Green I even had the pink polo I thought I was Kanye I promise I will never let the people down. I want a better life for all!
-                    </p>
                 </div>
                 <div class="tab-pane" id="testimonial2">
-                    <p class="description">Green I even had the pink polo I thought I was Kanye I promise I will never let the people down. I want a better life for all! And I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. Now there is only one important color...
-                    </p>
                 </div>
                 <div class="tab-pane" id="testimonial3">
-                    <p class="description"> I used a period because contrary to popular belief I strongly dislike exclamation points! We no longer have to be scared of the truth feels good to be home In Roman times the artist would contemplate proportions and colors. The 'Gaia' team did a great work while we were collaborating. They provided a vision that was in deep connection with our needs and helped us achieve our goals.
-                    </p>
                 </div>
 
             </div>
