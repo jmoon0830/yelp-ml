@@ -26,12 +26,24 @@ function handleChange() {
           ///console.log(res)
         return res.json()
       }).then((data) => {
-        console.log(data)
+        console.log(data);
+        var pair1 = data.object[1][0];
+        var pair2 = data.object[1][1];
+        console.log(pair1);
+        console.log(pair2);
+
+
+        var background_url = data.object[0].image_url;
         ///var background_url = data.object[0].image_url
-        var phone_num = "(678) 888-4884"
-        var address = "299 Moreland Ave NE"
-        var is_closed = false
-        var avg_rating = 4.5
+        var phone_num = data.object[0].display_phone;
+
+        console.log(phone_num)
+        var address = data.object[0].location.address1
+        console.log(address)
+        var is_closed = data.object[0].is_closed
+        console.log(is_closed)
+        var avg_rating = data.object[0].rating
+        console.log(avg_rating)
         var yelp_first_review = ""
         var yelp_url = ""
 
@@ -39,8 +51,8 @@ function handleChange() {
         ///it looks like the restaurant name is located in data[0].location.name
         var current_name = "test"
 
-        //d3.select("#background_img").style("background-image",`url(${background_url})`)
-        d3.select("#current_search").append("p").text(current_name)
+        d3.select("#background_img").style("background-image",`url(${background_url})`)
+        ///d3.select("#current_search").append("p").text(current_name)
         d3.select("#phone_num").append("p").text(phone_num)
         d3.select("#address").append("p").text(address)
         ///need code in here to update 'current search: ', probably have to add a class to that h2 line in the html as well

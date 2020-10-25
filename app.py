@@ -13,7 +13,9 @@ import time
 from scrape import scrape
 
 #ML packages
-from ml_model import ml_predictor, positive_words, negative_words, text_process
+from textprocess import text_process
+from ml_model import ml_predictor, positive_words, negative_words
+#positive_words, negative_words
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -28,18 +30,22 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 
-class loaded_model(object):
-    pass
+from sklearn.externals import joblib
+#from model import loaded_model
+#from vect import loaded_vectorizor
 
 
-class loaded_vectorizor(object):
-    pass
-
-class loaded_vectorizor(object):
-    pass
 
 
 app = Flask(__name__)
+
+#loaded_model = pickle.load(open('model.pickle', 'rb'))
+#loaded_vectorizor = pickle.load(open('vectorizer.pickle', rb))
+
+
+
+#loaded_model = pickle.load(open('model.pickle', 'rb'))
+#loaded_vectorizor = pickle.load(open('vectorizer.pickle', 'rb'))
 
 
 # setup mongo connection
@@ -119,27 +125,37 @@ def apipull():
 
         #Web scraping
         yelp_scrape_results = scrape(yelp_restaurant_url)
-
         #print(yelp_scrape_results)
 
+        yelp_scrape_results= pd.DataFrame(yelp_scrape_results)
+        #print(yelp_scrape_results)
+        
+        #results = scrape(url)
+        #results = pd.DataFrame(results)
+        #results.to_csv("results_csv", index = False)
+
+
         #Saving to CSV
-        web_scrapedf = pd.DataFrame(yelp_scrape_results, columns = ['Reviews'])
+        yelp_scrape_results.to_csv("web_scrape_csv", index = False)
+
 
 
         #Calling ML functions (this part is not working right now, think it's something to do with pickles not playing nicely with flask)
-        predicted_reviews = ml_predictor(web_scrapedf)
+        predicted_reviews = ml_predictor(yelp_scrape_results)
+        #print(predicted_reviews.head())
 
         #Generative positive reviews for word cloud
-        positive_reviews = positive_words(predicted_reviews)
+        positive_word_count = positive_words(predicted_reviews)
 
         #Generating negative reviews for word cloud
-        negative_reviews = negative_words(predicted_reviews)
+        negative_word_count = negative_words(predicted_reviews)
+
+
     
 
         #Printing results
-        print(positive_reviews)        
-        print(negative_reviews)
-
+        #print(positive_word_count)    
+        #print(negative_word_count)
 
 
         ##ML code here to create word clouds from the yelp_scrape_results above
@@ -147,22 +163,37 @@ def apipull():
 
         
         ## Getting the objects compiled to send off to JS
-        # Pulling what's stored in the JSON from earlier above to get ready to send it to JS
-        yelp_api_results = list(restaurant.find())
 
-        
+        # Pulling what's stored in mongodb from earlier above to get ready to send it to JS
+        yelp_api_results = list(restaurant.find())
         
 
         #Combining the two objects into one
-        #combined_object = {"object": yelp_api_results + positive_reviews + negative_reviews}
-        #final_object = dumps(combined_object)
+        combined_object = {"object": yelp_api_results + positive_word_count + negative_word_count}
+        #restaurant_info.items()
+
+        #combined_object = {"object": restaurant_info + positive_word_count + negative_word_count}
+        #combined_object = {"object": restaurant_info}
+
+        #dumping
+        final_object = dumps(combined_object)
+
+        #print(type(combined_object))
+        #print(type(final_object))
 
         #checking
         #print(final_object)
+        #yelp_api_results = dumps(yelp_api_results)
 
-        #return yelp_scrape_results
-        return yelp_api_results
-        #return final_object
+        #return restaurant_info
+        #return yelp_api_results
+
+
+        return final_object
+
+        #exampletuple = positive_word_count
+        #exampletuple = jsonify(exampletuple)
+        #return exampletuple
 
         #need to create a dictionary object, yelp_json = yelp_json (python dictionary jsonified), ml_results = ml_results
 
@@ -346,5 +377,7 @@ def apipull():
 
 
 if __name__ == "__main__":
-
+    #loaded_model = joblib.load('model.joblib')
+    #loaded_vectorizor = joblib.load('vect.joblib')
+    #app.debug = True
     app.run(debug=True)

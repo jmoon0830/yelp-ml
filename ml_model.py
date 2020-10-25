@@ -12,40 +12,43 @@ import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
+import joblib
+from textprocess import text_process
 
 
 
-
-def text_process(text):
-    nopunc = [char for char in text if char not in string.punctuation]
-    nopunc = ''.join(nopunc)
-    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+# def text_process(text):
+#     nopunc = [char for char in text if char not in string.punctuation]
+#     nopunc = ''.join(nopunc)
+#     return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
 #cv = CountVectorizer(analyzer=text_process)   
 
 
 
 #Bringing in Jimmy's web scraping code
-web_scrapedf = pd.read_csv("web_scrape_csv")
+#web_scrapedf = pd.read_csv("web_scrape_csv")
 #print(web_scrapedf.head())
 
-def text_process(text):
-    nopunc = [char for char in text if char not in string.punctuation]
-    nopunc = ''.join(nopunc)
-    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+#loaded_vectorizor2 = CountVectorizer(analyzer=text_process)
+
 
 #Looping through the web-scraped reviews to make predictions
 def ml_predictor(web_scrapedf):
+    #loaded_model = pickle.load(open('model.pickle', 'rb'))
 
     #Loading the model
     loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
+    #loaded_model = joblib.load("ml_model/model.joblib")
 
     #Loading the vectorizor
+    #loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
     loaded_vectorizor = pickle.load(open("ml_model/vectorizer.pickle", 'rb'))
+    #loaded_vectorizor = joblib.load("ml_model/vect.joblib")
+
     
     #Creating predictions for each review
     for label, row in web_scrapedf.iterrows():
-        result = []
         text = row['Reviews']
         #print(text)
         text_transform = loaded_vectorizor.transform([text])
@@ -73,9 +76,10 @@ def positive_words(scrape_results_df):
 
 
     positive_words = dict(zip(positive_word_list, positive_count_list))
-    positive_words = sorted(positive_words.items(), key=operator.itemgetter(1), reverse=True)
+    positive_sorted = sorted(positive_words.items(), key=operator.itemgetter(1), reverse=True)
+    positive_sorted = [(p[0], int(p[1])) for p in positive_sorted]
 
-    return positive_words
+    return positive_sorted
 
 #Function to create negative words for word cloud
 def negative_words(scrape_results_df):
@@ -92,23 +96,24 @@ def negative_words(scrape_results_df):
 
 
     negative_words = dict(zip(negative_word_list, negative_count_list))
-    negative_words = sorted(negative_words.items(), key=operator.itemgetter(1), reverse=True)
+    negative_sorted = sorted(negative_words.items(), key=operator.itemgetter(1), reverse=True)
+    negative_sorted = [(n[0], int(n[1])) for n in negative_sorted]
 
-    return negative_words
-
-
-
+    return negative_sorted
 
 
-predicted_reviews = ml_predictor(web_scrapedf)
-
-positive_reviews = positive_words(predicted_reviews)
 
 
-negative_reviews = negative_words(predicted_reviews)
+
+#predicted_reviews = ml_predictor(web_scrapedf)
+
+#positive_reviews = positive_words(predicted_reviews)
+
+
+#negative_reviews = negative_words(predicted_reviews)
     
 
     
-print(positive_reviews)        
+#print(positive_reviews)        
 
-print(negative_reviews)
+#print(negative_reviews)
