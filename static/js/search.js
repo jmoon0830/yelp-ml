@@ -27,7 +27,7 @@ function handleChange() {
         return res.json()
       }).then((data) => {
         console.log(data)
-        var background_url = data[0].image_url
+        ///var background_url = data.object[0].image_url
         var phone_num = "(678) 888-4884"
         var address = "299 Moreland Ave NE"
         var is_closed = false
@@ -39,7 +39,7 @@ function handleChange() {
         ///it looks like the restaurant name is located in data[0].location.name
         var current_name = "test"
 
-        d3.select("#background_img").style("background-image",`url(${background_url})`)
+        //d3.select("#background_img").style("background-image",`url(${background_url})`)
         d3.select("#current_search").append("p").text(current_name)
         d3.select("#phone_num").append("p").text(phone_num)
         d3.select("#address").append("p").text(address)

@@ -4,6 +4,11 @@ import json
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 import requests
+from splinter import Browser
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+from scrape import scrape
 
 
 app = Flask(__name__)
@@ -15,6 +20,8 @@ client = pymongo.MongoClient(conn)
 # connect to mongo db and collection
 db = client.yelpDB
 restaurant = db.yelp
+
+
 
 #home page
 @app.route("/")
@@ -43,25 +50,25 @@ def apipull():
         print(input_name)
         print(input_location)
 
-
-
+        ##Part 1: Using Yelp Autocomplete to get the restaurant's name
+        #Constructing API query for Yelp API Autocomplete
         client_id = "Yba0SJQtkua4MCvdfFfUrg"
         api_key = "xAg1Vq9ZHUJetn_7_V_Q6Y98to85Xq8vIXPesjLSu2DY4TlGtZ15ZdMUdSgHByWrs27p4UtLxik7F24_ga3Cyub545yuL2uXfA4p9supuqkUAY0QXvSkLj_8fCmLX3Yx"
         headers = {'Authorization': f'Bearer {api_key}'}
 
-        # def pprint(text):
-        # return print(json.dumps(text, indent=4, sort_keys=True))
-
-
+        
         url = "https://api.yelp.com/v3/autocomplete"
         params = {'text':input_name}
         response_json = requests.get(url,params=params,headers=headers).json()
-        #print(response_json)
+        
 
+        #This is the official name for the restaurant
         first_term = response_json["terms"][0]["text"]
         print(first_term)
 
 
+        ##Part 2: Retrieving key info needed
+        #Using official name from above to pull the info 
         url = "https://api.yelp.com/v3/businesses/search"
         params = {'term':first_term,'location':input_location}
 
@@ -69,38 +76,58 @@ def apipull():
         response_json2 = requests.get(url,params=params,headers=headers).json()
         #print(response_json2)
 
+        # Extracting only the part we need
+        restaurant_info = response_json2['businesses'][0]
+        #print(restaurant_info)
+
+        ## insert JSON into MongoDB
+        restaurant.insert_one(restaurant_info)
+
+
+        #Creating URL to be used for web scraping part
+        yelp_restaurant_url = restaurant_info["url"]
+        print(yelp_restaurant_url)
+
+        yelp_scrape_results = scrape(yelp_restaurant_url)
+        #print(yelp_scrape_results)
+
+
+
+        ##ML code here to create word clouds from the yelp_scrape_results above
 
 
         
-        #print(response_json2)
+        ## Getting the objects compiled to send off to JS
+        # Pulling what's stored in the JSON from earlier above to get ready to send it to JS
+        yelp_api_results = list(restaurant.find())
 
-        ## Only needed if the base response_json2 needs to go deeper
-        restaurant_info = response_json2['businesses'][0]
+        
+        
 
-        ## insert JSON into MongoDB
-        restaurant.insert(restaurant_info)
+        #Combining the two objects into one
+        combined_object = {"object": yelp_api_results + yelp_scrape_results}
+        final_object = dumps(combined_object)
 
+        #checking
+        #print(final_object)
 
-        ## Pulling what's stored in the JSON, sending to JS
-        data = list(restaurant.find())
-        yelp_json = dumps(data)
-        #print(yelp_json)
-        return yelp_json
+        #return yelp_scrape_results
+        return final_object
 
         #need to create a dictionary object, yelp_json = yelp_json (python dictionary jsonified), ml_results = ml_results
 
         ##jimmys code, keep in different file, import function, give it the url input, put it inside of 
         ###research how to send a jsonified python dictionary back to JS 
 
-
         #combine yelp_json and ml_results objects together (object of objects), send that back
        
+    #    combined_object= yelp_json, ml_results
+    #    return combined_object;
         #return ml_results
 
 
 
-        first_term_url = response_json2["businesses"][0]["url"]
-        print(first_term_url)
+        
         # background_img = response_json2["businesses"][0]["image_url"]
         # phone_num = response_json2["businesses"][0]["display_phone"]
         # address = response_json2["businesses"][0]["location"]["address1"]
@@ -114,7 +141,24 @@ def apipull():
         # print(is_closed)
         # print(avg_rating)
 
-        #return first_term_url
+        # #return first_term_url
+
+
+
+        #         ## Pulling what's stored in the JSON from the step above, sending to JS
+        # data = list(restaurant.find())
+        # data2 = list(restaurant.find())
+        
+        # yelp_json = dumps(data)
+        
+        # combined_object = {"object": data + data2}
+
+        # final_object = dumps(combined_object)
+        # print(final_object)
+
+
+
+        # return final_object
 
        
 
