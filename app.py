@@ -8,10 +8,39 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
+
+#Web scrape function
 from scrape import scrape
+
+#ML packages
+from ml_model import ml_predictor, positive_words, negative_words, text_process
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+import string
+import operator
+from sklearn.feature_extraction.text import CountVectorizer
+import pickle
+
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from nltk.tokenize import word_tokenize
+
+class loaded_model(object):
+    pass
+
+
+class loaded_vectorizor(object):
+    pass
+
+class loaded_vectorizor(object):
+    pass
 
 
 app = Flask(__name__)
+
 
 # setup mongo connection
 conn = "mongodb://localhost:27017"
@@ -88,8 +117,28 @@ def apipull():
         yelp_restaurant_url = restaurant_info["url"]
         print(yelp_restaurant_url)
 
+        #Web scraping
         yelp_scrape_results = scrape(yelp_restaurant_url)
+
         #print(yelp_scrape_results)
+
+        #Saving to CSV
+        web_scrapedf = pd.DataFrame(yelp_scrape_results, columns = ['Reviews'])
+
+
+        #Calling ML functions (this part is not working right now, think it's something to do with pickles not playing nicely with flask)
+        predicted_reviews = ml_predictor(web_scrapedf)
+
+        #Generative positive reviews for word cloud
+        positive_reviews = positive_words(predicted_reviews)
+
+        #Generating negative reviews for word cloud
+        negative_reviews = negative_words(predicted_reviews)
+    
+
+        #Printing results
+        print(positive_reviews)        
+        print(negative_reviews)
 
 
 
@@ -105,14 +154,15 @@ def apipull():
         
 
         #Combining the two objects into one
-        combined_object = {"object": yelp_api_results + yelp_scrape_results}
-        final_object = dumps(combined_object)
+        #combined_object = {"object": yelp_api_results + positive_reviews + negative_reviews}
+        #final_object = dumps(combined_object)
 
         #checking
         #print(final_object)
 
         #return yelp_scrape_results
-        return final_object
+        return yelp_api_results
+        #return final_object
 
         #need to create a dictionary object, yelp_json = yelp_json (python dictionary jsonified), ml_results = ml_results
 
@@ -296,4 +346,5 @@ def apipull():
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)

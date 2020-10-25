@@ -18,3 +18,8 @@
 [1024/202347.436:ERROR:exception_snapshot_win.cc(99)] thread ID 3296 not found in process
 [1024/202347.463:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [1024/202347.463:ERROR:exception_snapshot_win.cc(99)] thread ID 32892 not found in process
+[1025/102607.610:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1025/102953.391:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1025/102953.391:ERROR:exception_snapshot_win.cc(99)] thread ID 36532 not found in process
+[1025/102953.409:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1025/102953.409:ERROR:exception_snapshot_win.cc(99)] thread ID 26692 not found in process
