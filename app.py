@@ -127,20 +127,15 @@ def apipull():
         yelp_scrape_results = scrape(yelp_restaurant_url)
         #print(yelp_scrape_results)
 
+        #Convert into a dataframe
         yelp_scrape_results= pd.DataFrame(yelp_scrape_results)
-        #print(yelp_scrape_results)
-        
-        #results = scrape(url)
-        #results = pd.DataFrame(results)
-        #results.to_csv("results_csv", index = False)
-
 
         #Saving to CSV
         yelp_scrape_results.to_csv("web_scrape_csv", index = False)
 
 
 
-        #Calling ML functions (this part is not working right now, think it's something to do with pickles not playing nicely with flask)
+        #Calling ML functions
         predicted_reviews = ml_predictor(yelp_scrape_results)
         #print(predicted_reviews.head())
 
@@ -151,25 +146,21 @@ def apipull():
         negative_word_count = negative_words(predicted_reviews)
 
 
-    
-
         #Printing results
         #print(positive_word_count)    
         #print(negative_word_count)
 
 
-        ##ML code here to create word clouds from the yelp_scrape_results above
-
-
-        
         ## Getting the objects compiled to send off to JS
 
         # Pulling what's stored in mongodb from earlier above to get ready to send it to JS
         yelp_api_results = list(restaurant.find())
         
 
-        #Combining the two objects into one
+        #Combining the three objects into one
         combined_object = {"object": yelp_api_results + positive_word_count + negative_word_count}
+
+
         #restaurant_info.items()
 
         #combined_object = {"object": restaurant_info + positive_word_count + negative_word_count}
@@ -177,6 +168,10 @@ def apipull():
 
         #dumping
         final_object = dumps(combined_object)
+
+
+        return final_object
+
 
         #print(type(combined_object))
         #print(type(final_object))
@@ -189,7 +184,6 @@ def apipull():
         #return yelp_api_results
 
 
-        return final_object
 
         #exampletuple = positive_word_count
         #exampletuple = jsonify(exampletuple)
