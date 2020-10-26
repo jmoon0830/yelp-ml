@@ -119,9 +119,10 @@ def apipull():
 
         #Convert into a dataframe
         yelp_scrape_results= pd.DataFrame(yelp_scrape_results)
+        print(yelp_scrape_results)
 
         #Saving to CSV
-        #yelp_scrape_results.to_csv("web_scrape_csv", index = False)
+        yelp_scrape_results.to_csv("web_scrape_csv", index = False)
 
 
 

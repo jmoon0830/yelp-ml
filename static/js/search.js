@@ -4,6 +4,7 @@ var button1 = d3.select("#search_button1")
 // user query is saved and sent to python to webscrape and api call
 button1.on("click", handleChange)
 function handleChange() {
+    ///code to turn loader on
     var input = d3.select("#search_bar").property("value");
     var location = 'atlanta';
 
@@ -23,6 +24,7 @@ function handleChange() {
           ///console.log(res)
         return res.json()
       }).then((data) => {
+          ///code that turns loader off
         console.log(data);
         var pair = data.object[1]
         console.log(pair);
