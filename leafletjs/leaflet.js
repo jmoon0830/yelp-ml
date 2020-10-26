@@ -21,17 +21,17 @@ $(function() {
       }
     };
   
-    // Load data from car.csv
-    d3.csv("merged_data.csv").then(function(carData) {
+    // Load data from file.json
+    d3.csv("file.json").then(function(coordinates) {
   
-      // Print the carData
-      console.log(carData);
+      // Print the coordinates
+      console.log(coordinates);
   
       // Creating choose filter
-      var make = ["- choose"];
+      var coordinates = ["- choose"];
   
-      for (var i = 0; i < carData.length; i++){
-        var city = [carData[i].lat, carData[i].long]
+      for (var i = 0; i < coordinates.length; i++){
+        var coordinates = [coordinates[i].lat, coordinates[i].long]
         L.marker(city).addTo(myMap)
   
   
