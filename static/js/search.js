@@ -4,10 +4,7 @@ var button1 = d3.select("#search_button1")
 // user query is saved and sent to python to webscrape and api call
 button1.on("click", handleChange)
 function handleChange() {
-    console.log("click")
     var input = d3.select("#search_bar").property("value");
-    console.log(input)
-
     var location = 'atlanta';
 
     search_params = {
@@ -27,6 +24,8 @@ function handleChange() {
         return res.json()
       }).then((data) => {
         console.log(data);
+        var pair = data.object[1]
+        console.log(pair);
         var pair1 = data.object[1][0];
         var pair2 = data.object[1][1];
         console.log(pair1);

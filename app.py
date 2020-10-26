@@ -158,6 +158,9 @@ def apipull():
         #dumping
         final_object = dumps(combined_object)
 
+        with open('file.json', 'w') as f:
+            json.dump(final_object, f)
+
 
         return final_object
 
