@@ -28,10 +28,9 @@ import pickle
 
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 
-from sklearn.externals import joblib
 
 
 
@@ -39,12 +38,12 @@ from sklearn.externals import joblib
 app = Flask(__name__)
 
 # setup mongo connection
-conn = "mongodb://localhost:27017"
-client = pymongo.MongoClient(conn)
+#conn = "mongodb://localhost:27017"
+#client = pymongo.MongoClient(conn)
 
 # connect to mongo db and collection
-db = client.yelpDB
-restaurant = db.yelp
+#db = client.yelpDB
+#restaurant = db.yelp
 
 
 #home page
@@ -66,7 +65,7 @@ def apipull():
         #print(search_params.name)
 
         # drop previously generated collection
-        restaurant.drop()
+        #restaurant.drop()
 
         input_name = search_params['name']
         input_location = search_params['location']
@@ -103,9 +102,11 @@ def apipull():
         # Extracting only the part we need
         restaurant_info = response_json2['businesses'][0]
         #print(restaurant_info)
+        print(type(restaurant_info))
+        print(restaurant_info)
 
         ## insert JSON into MongoDB
-        restaurant.insert_one(restaurant_info)
+        #restaurant.insert_one(restaurant_info)
 
         ##Part 3: web scraping to compile all the reviews
         #Creating URL to be used for web scraping part
@@ -120,7 +121,7 @@ def apipull():
         yelp_scrape_results= pd.DataFrame(yelp_scrape_results)
 
         #Saving to CSV
-        yelp_scrape_results.to_csv("web_scrape_csv", index = False)
+        #yelp_scrape_results.to_csv("web_scrape_csv", index = False)
 
 
 
@@ -143,26 +144,46 @@ def apipull():
         ## Getting the objects compiled to send off to JS
 
         # Pulling what's stored in mongodb from earlier above to get ready to send it to JS
-        yelp_api_results = list(restaurant.find())
+        #yelp_api_results = list(restaurant.find())
+
+        #sample = {'id': 'UW1NFjJ8S4W0uCy8M6Vpog', 'alias': 'mamak-doraville-3', 'name': 'Mamak', 'image_url': 'https://s3-media1.fl.yelpcdn.com/bphoto/qqqXQV9PsBBVyN94U5COtA/o.jpg', 'is_closed': False, 'url': 'https://www.yelp.com/biz/mamak-doraville-3?adjust_creative=Yba0SJQtkua4MCvdfFfUrg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=Yba0SJQtkua4MCvdfFfUrg', 'review_count': 581, 'categories': [{'alias': 'malaysian', 'title': 'Malaysian'}, {'alias': 'chinese', 'title': 'Chinese'}], 'rating': 4.0, 'coordinates': {'latitude': 33.8934542170406, 'longitude': -84.2847600951791}, 'transactions': ['delivery'], 'price': '$$', 'location': {'address1': '5150 Buford Hwy', 'address2': 'Ste A-170', 'address3': '', 'city': 'Doraville', 'zip_code': '30340', 'country': 'US', 'state': 'GA', 'display_address': ['5150 Buford Hwy', 'Ste A-170', 'Doraville, GA 30340']}, 'phone': '+16783953192', 'display_phone': '(678) 395-3192', 'distance': 12122.364948655411}
+        #sample = list(sample)
+        #yelp_api_results = sample
+
+
+
+
+        #yelp_api_results = list(yelp_api_results)
+        #print(type(yelp_api_results))
+
+        #print(positive_word_count)
         
 
         #Combining the three objects into one
-        combined_object = {"object": yelp_api_results + positive_word_count + negative_word_count}
+        #combined_object = {"object": yelp_api_results + positive_word_count + negative_word_count}
 
 
         #restaurant_info.items()
 
-        #combined_object = {"object": restaurant_info + positive_word_count + negative_word_count}
+
+        
+        combined_object = {"yelp_api" :restaurant_info, "positive": positive_word_count, "negative": negative_word_count}
         #combined_object = {"object": restaurant_info}
 
         #dumping
         final_object = dumps(combined_object)
 
-        with open('file.json', 'w') as f:
+        with open('file2.json', 'w') as f:
             json.dump(final_object, f)
 
+        #restaurant_info = dumps(yelp_api_results)
+        #positive_word_count = dumps(positive_word_count)
+        #negative_word_count = dumps(negative_word_count)
 
+        
         return final_object
+        #return restaurant_info, positive_word_count, negative_word_count
+        #return positive_word_count
 
 
         #print(type(combined_object))
