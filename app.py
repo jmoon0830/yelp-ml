@@ -1,3 +1,6 @@
+#Import dependencies
+
+#Flask-related dependencies
 from flask import Flask, render_template, jsonify, request
 import pymongo
 import json
@@ -12,11 +15,9 @@ import time
 #Web scrape function
 from scrape import scrape
 
-#ML packages
+#ML-code-related dependencies
 from textprocess import text_process
 from ml_model import ml_predictor, positive_words, negative_words
-#positive_words, negative_words
-import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
@@ -31,22 +32,11 @@ nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 
 from sklearn.externals import joblib
-#from model import loaded_model
-#from vect import loaded_vectorizor
 
 
 
 
 app = Flask(__name__)
-
-#loaded_model = pickle.load(open('model.pickle', 'rb'))
-#loaded_vectorizor = pickle.load(open('vectorizer.pickle', rb))
-
-
-
-#loaded_model = pickle.load(open('model.pickle', 'rb'))
-#loaded_vectorizor = pickle.load(open('vectorizer.pickle', 'rb'))
-
 
 # setup mongo connection
 conn = "mongodb://localhost:27017"
@@ -55,7 +45,6 @@ client = pymongo.MongoClient(conn)
 # connect to mongo db and collection
 db = client.yelpDB
 restaurant = db.yelp
-
 
 
 #home page
@@ -118,7 +107,7 @@ def apipull():
         ## insert JSON into MongoDB
         restaurant.insert_one(restaurant_info)
 
-
+        ##Part 3: web scraping to compile all the reviews
         #Creating URL to be used for web scraping part
         yelp_restaurant_url = restaurant_info["url"]
         print(yelp_restaurant_url)

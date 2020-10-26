@@ -24,7 +24,7 @@ def scrape(yelpurl):
 
     # start from the first page on yelp and go to the fifth page
     start = 0
-    num_pages = 1
+    num_pages = 5
     end = 20* num_pages
 
     # loop through yelp page to scrape the comments
