@@ -1,6 +1,7 @@
+parseData = JSON.parse(X:"data.object[1][0]"{},Y:"data.object[1][1]"{})
 anychart.onDocumentReady(function() {
     var data = {
-      "data.object[1][0]": {},"data.object[1][1]":{},
+      
     };
     
     Object.keys(data).forEach(function(key) {
