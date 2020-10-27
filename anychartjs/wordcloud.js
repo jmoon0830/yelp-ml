@@ -1,12 +1,19 @@
-parseData = JSON.parse(X:"data.object[1][0]"{},Y:"data.object[1][1]"{})
+//parseData = JSON.parse(X:"data.object[1][0]"{},Y:"data.object[1][1]"{})
 anychart.onDocumentReady(function() {
-    var data = {
-      
-    };
+  var data = [
+    {"x": "Bingo", "value": 3, category: "Positive"},
+    {"x": "Night", "value": 2, category: "Negative"},
+    {"x": "Party", "value": 1, category: "Neutral"},
+    {"x": "PPPrint", "value": 1, category: "Neutral"},
+    {"x": "Dalmatian", "value": 3, category: "Positive"},
+    {"x": "Daybreak", "value": 2, category: "Negative"},
+    {"x": "Citidel", "value": 1, category: "Neutral"},
+    {"x": "Bogus", "value": 1, category: "Neutral"}
+  ];
     
-    Object.keys(data).forEach(function(key) {
-      console.table('Key : ' + key + ', Value : ' + data[key])
-    })
+    //Object.keys(data).forEach(function(key) {
+      //console.table('Key : ' + key + ', Value : ' + data[key])
+    
 
     // set colors
     var colors = anychart.scales
@@ -25,4 +32,4 @@ anychart.onDocumentReady(function() {
     // display the word cloud chart
     chart.container("container");
     chart.draw();
-  });
+})
