@@ -10,7 +10,7 @@ import pickle
 
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 import joblib
 from textprocess import text_process
@@ -78,6 +78,7 @@ def positive_words(scrape_results_df):
     positive_words = dict(zip(positive_word_list, positive_count_list))
     positive_sorted = sorted(positive_words.items(), key=operator.itemgetter(1), reverse=True)
     positive_sorted = [(p[0], int(p[1])) for p in positive_sorted]
+    positive_sorted = positive_sorted[:99]
 
     return positive_sorted
 
@@ -98,6 +99,7 @@ def negative_words(scrape_results_df):
     negative_words = dict(zip(negative_word_list, negative_count_list))
     negative_sorted = sorted(negative_words.items(), key=operator.itemgetter(1), reverse=True)
     negative_sorted = [(n[0], int(n[1])) for n in negative_sorted]
+    negative_sorted = negative_sorted[:99]
 
     return negative_sorted
 

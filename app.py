@@ -33,8 +33,6 @@ from nltk.tokenize import word_tokenize
 
 
 
-
-
 app = Flask(__name__)
 
 # setup mongo connection
@@ -60,12 +58,7 @@ def apipull():
         #print(request.data)   
         search_params = request.json
         print(search_params)
-        #search_params = request.form.get('name')
-        #print(type(search_params))
-        #print(search_params.name)
 
-        # drop previously generated collection
-        #restaurant.drop()
 
         input_name = search_params['name']
         input_location = search_params['location']
@@ -83,15 +76,16 @@ def apipull():
         url = "https://api.yelp.com/v3/autocomplete"
         params = {'text':input_name}
         response_json = requests.get(url,params=params,headers=headers).json()
+        print(response_json)
         
 
         #This is the official name for the restaurant
+    if response_json["terms"]:    
         first_term = response_json["terms"][0]["text"]
         print(first_term)
 
 
-        ##Part 2: Retrieving key info needed
-        #Using official name from above to pull the info 
+        ##Part 2: Retrieving key info needed, using official name from above to pull the info 
         url = "https://api.yelp.com/v3/businesses/search"
         params = {'term':first_term,'location':input_location}
 
@@ -109,32 +103,26 @@ def apipull():
         #restaurant.insert_one(restaurant_info)
 
         ##Part 3: web scraping to compile all the reviews
+
         #Creating URL to be used for web scraping part
         yelp_restaurant_url = restaurant_info["url"]
         print(yelp_restaurant_url)
 
         #Web scraping
         yelp_scrape_results = scrape(yelp_restaurant_url)
+        #print(yelp_scrape_results)
         #print(type(yelp_scrape_results))
-
-        #Convert into a dataframe
-        yelp_scrape_df= pd.DataFrame(yelp_scrape_results)
-        print(yelp_scrape_df)
 
         #Extracting Yelp Star ratings for later
         yelp_stars = yelp_scrape_results['Stars']
-        #print(yelp_stars)
-        #print(type(yelp_stars))
 
-        #yelp_stars_dict = yelp_scrape_results
-        #print(yelp_stars_dict)
-        #print(type(yelp_stars_dict))
+        #Convert into a dataframe
+        yelp_scrape_df= pd.DataFrame({"Reviews" : yelp_scrape_results['Reviews']})
+        print(yelp_scrape_df)
 
-        
 
         #Saving to CSV
         yelp_scrape_df.to_csv("web_scrape_csv", index = False)
-
 
 
         #Calling ML functions
@@ -148,39 +136,9 @@ def apipull():
         negative_word_count = negative_words(predicted_reviews)
 
 
-        #Printing results
-        #print(positive_word_count)    
-        #print(negative_word_count)
-
-
-        ## Getting the objects compiled to send off to JS
-
-        # Pulling what's stored in mongodb from earlier above to get ready to send it to JS
-        #yelp_api_results = list(restaurant.find())
-
-        #sample = {'id': 'UW1NFjJ8S4W0uCy8M6Vpog', 'alias': 'mamak-doraville-3', 'name': 'Mamak', 'image_url': 'https://s3-media1.fl.yelpcdn.com/bphoto/qqqXQV9PsBBVyN94U5COtA/o.jpg', 'is_closed': False, 'url': 'https://www.yelp.com/biz/mamak-doraville-3?adjust_creative=Yba0SJQtkua4MCvdfFfUrg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=Yba0SJQtkua4MCvdfFfUrg', 'review_count': 581, 'categories': [{'alias': 'malaysian', 'title': 'Malaysian'}, {'alias': 'chinese', 'title': 'Chinese'}], 'rating': 4.0, 'coordinates': {'latitude': 33.8934542170406, 'longitude': -84.2847600951791}, 'transactions': ['delivery'], 'price': '$$', 'location': {'address1': '5150 Buford Hwy', 'address2': 'Ste A-170', 'address3': '', 'city': 'Doraville', 'zip_code': '30340', 'country': 'US', 'state': 'GA', 'display_address': ['5150 Buford Hwy', 'Ste A-170', 'Doraville, GA 30340']}, 'phone': '+16783953192', 'display_phone': '(678) 395-3192', 'distance': 12122.364948655411}
-        #sample = list(sample)
-        #yelp_api_results = sample
-
-
-
-
-        #yelp_api_results = list(yelp_api_results)
-        #print(type(yelp_api_results))
-
-        #print(positive_word_count)
-        
-
-        #Combining the three objects into one
-        #combined_object = {"object": yelp_api_results + positive_word_count + negative_word_count}
-
-
-        #restaurant_info.items()
-
-
         #Combining objects to send off to JS
         combined_object = {"yelp_api" :restaurant_info, "positive": positive_word_count, "negative": negative_word_count, "yelp_stars" : yelp_stars}
-        #combined_object = {"object": restaurant_info}
+        
 
         #Dumping object
         final_object = dumps(combined_object)
@@ -190,12 +148,15 @@ def apipull():
         with open('file3.json', 'w') as f:
             json.dump(final_object, f)
 
-        #restaurant_info = dumps(yelp_api_results)
-        #positive_word_count = dumps(positive_word_count)
-        #negative_word_count = dumps(negative_word_count)
 
         #Sending off to JS
         return final_object
+
+    else:
+        message = "Uh oh! An error occurred. Please try a different search."
+        final_message = dumps(message)
+        return final_message
+        
         #return restaurant_info, positive_word_count, negative_word_count
         #return positive_word_count
 
@@ -398,7 +359,5 @@ def apipull():
 
 
 if __name__ == "__main__":
-    #loaded_model = joblib.load('model.joblib')
-    #loaded_vectorizor = joblib.load('vect.joblib')
-    #app.debug = True
+
     app.run(debug=True)

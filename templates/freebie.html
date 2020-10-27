@@ -37,7 +37,10 @@
                 </a>
             </div>
             <!-- <form class="form-inline my-2 my-lg-0" id="search_form"> -->
-                <input class="form-control mr-sm-2" id="search_bar">
+                <span>Place:</span>
+                <input class="mr-sm-2" id="search_bar1" placeholder="ex: Hattie Bs">
+                <span>Location:</span>
+                <input class="mr-sm-2" id="search_bar2" placeholder="ex: Atlanta, GA">
                 <button class="btn btn-outline-success my-2 my-sm-0" id="search_button1">Search</button>
             <!-- </form> -->
         </div>
@@ -47,7 +50,7 @@
     <div class="section section-header">
         <div class="parallax filter filter-color-red">
             <div class="image"
-                style="background-image: url('https://s3-media0.fl.yelpcdn.com/bphoto/8GJlTUym3WOcfMKF28v2Gw/o.jpg')" id="background_img">
+                style="background-image: url('https://blog.amigofoods.com/wp-content/uploads/2019/03/delicious-spanish-foods.jpg')" id="background_img">
             </div>
             <div class="container">
                 <div class="content">
@@ -55,8 +58,9 @@
                         <h1 class="title-modern">Yelp Restaurant Data Finder</h1>
                         <h3>Scrape Yelp Data Here!</h2>
                         <div class="separator line-separator">♦</div>
-                        <h2>Current Search: Hattie B's</h2>
-                        
+                        <div id="current_search">
+                            <h2>Current Search: </h2>
+                        </div>                        
                     </div>
                 </div>
 
@@ -81,6 +85,7 @@
                         </div>
                         <h3 class="card-header">Phone Number</h3>
                         <div class="card-body" id="phone_num">
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -91,6 +96,7 @@
                         </div>
                         <h3 class="card-header">Address</h3>
                         <div class="card-body" id="address">
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -99,8 +105,9 @@
                         <div class="icon text-danger">
                             <i class="pe-7s-pen"></i> 
                         </div>
-                        <h3 class="card-header">Reviews</h3>
+                        <h3 class="card-header">Open/Closed</h3>
                         <div class="card-body" id="hours">
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -111,8 +118,6 @@
 
     <div class="section section-our-team-freebie">
         <div class="parallax filter filter-color-black">
-            <div class="image" style="background-image:url('static/images/header-2.jpeg')">
-            </div>
             <div class="container">
                 <div class="content">
                     <div class="row">
