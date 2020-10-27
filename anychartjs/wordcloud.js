@@ -1,6 +1,7 @@
-anychart.onDocumentReady(function() {
-  d3.json("../JSONcopies/file3.json").then(function(data){
-    {"x": {}, "value": {}, category: "Positive"}
+d3.json("../JSONcopies/file3.json").then(function(data){
+  anychart.onDocumentReady(function() {
+    var data2 = JSON.parse(data)
+    console.log(data2.positive)
     // {"x": "Night", "value": 2, category: "Negative"},
     // {"x": "Party", "value": 1, category: "Neutral"},
     // {"x": "PPPrint", "value": 1, category: "Neutral"},
@@ -8,7 +9,7 @@ anychart.onDocumentReady(function() {
     // {"x": "Daybreak", "value": 2, category: "Negative"},
     // {"x": "Citidel", "value": 1, category: "Neutral"},
     // {"x": "Bogus", "value": 1, category: "Neutral"}
-  })
+  
     
     //Object.keys(data).forEach(function(key) {
       //console.table('Key : ' + key + ', Value : ' + data[key])
@@ -17,9 +18,9 @@ anychart.onDocumentReady(function() {
     // set colors
     var colors = anychart.scales
       .ordinalColor()
-      .colors(['#7FFF00', '#DC143C', '#B0C4DE']);
+      .colors('#7FFF00');
     // create a tag (word) cloud chart
-    var chart = anychart.tagCloud(data);
+    var chart = anychart.tagCloud(data2.positive);
     // set a chart title
     chart.title('Postive vs Negative')
     // set an array of angles at which the words will be laid out
@@ -31,4 +32,5 @@ anychart.onDocumentReady(function() {
     // display the word cloud chart
     chart.container("container");
     chart.draw();
+  })
 })
