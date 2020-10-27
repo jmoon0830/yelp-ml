@@ -1,2 +1,13 @@
 [1026/181313.025:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1026/181313.026:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1026/200005.173:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/200206.210:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/204702.914:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1026/204702.916:ERROR:exception_snapshot_win.cc(99)] thread ID 29116 not found in process
+[1026/204702.921:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1026/204702.922:ERROR:exception_snapshot_win.cc(99)] thread ID 20444 not found in process
+[1026/204702.966:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1026/204702.966:ERROR:exception_snapshot_win.cc(99)] thread ID 34524 not found in process
+[1026/204702.966:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1026/204702.966:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1026/204702.966:ERROR:exception_snapshot_win.cc(99)] thread ID 32424 not found in process

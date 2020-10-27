@@ -115,19 +115,30 @@ def apipull():
 
         #Web scraping
         yelp_scrape_results = scrape(yelp_restaurant_url)
-        #print(yelp_scrape_results)
+        #print(type(yelp_scrape_results))
 
         #Convert into a dataframe
-        yelp_scrape_results= pd.DataFrame(yelp_scrape_results)
-        print(yelp_scrape_results)
+        yelp_scrape_df= pd.DataFrame(yelp_scrape_results)
+        print(yelp_scrape_df)
+
+        #Extracting Yelp Star ratings for later
+        yelp_stars = yelp_scrape_results['Stars']
+        #print(yelp_stars)
+        #print(type(yelp_stars))
+
+        #yelp_stars_dict = yelp_scrape_results
+        #print(yelp_stars_dict)
+        #print(type(yelp_stars_dict))
+
+        
 
         #Saving to CSV
-        yelp_scrape_results.to_csv("web_scrape_csv", index = False)
+        yelp_scrape_df.to_csv("web_scrape_csv", index = False)
 
 
 
         #Calling ML functions
-        predicted_reviews = ml_predictor(yelp_scrape_results)
+        predicted_reviews = ml_predictor(yelp_scrape_df)
         #print(predicted_reviews.head())
 
         #Generative positive reviews for word cloud
@@ -167,21 +178,23 @@ def apipull():
         #restaurant_info.items()
 
 
-        
-        combined_object = {"yelp_api" :restaurant_info, "positive": positive_word_count, "negative": negative_word_count}
+        #Combining objects to send off to JS
+        combined_object = {"yelp_api" :restaurant_info, "positive": positive_word_count, "negative": negative_word_count, "yelp_stars" : yelp_stars}
         #combined_object = {"object": restaurant_info}
 
-        #dumping
+        #Dumping object
         final_object = dumps(combined_object)
 
-        with open('file2.json', 'w') as f:
+
+        #Saving as external file to make easier
+        with open('file3.json', 'w') as f:
             json.dump(final_object, f)
 
         #restaurant_info = dumps(yelp_api_results)
         #positive_word_count = dumps(positive_word_count)
         #negative_word_count = dumps(negative_word_count)
 
-        
+        #Sending off to JS
         return final_object
         #return restaurant_info, positive_word_count, negative_word_count
         #return positive_word_count
