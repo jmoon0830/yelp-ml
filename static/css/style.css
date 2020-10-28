@@ -1,0 +1,75 @@
+#search_bar {
+    /* text-align: right; */
+    /* width: 4cm; */
+    margin: 1%;
+}
+
+#search_button1 {
+    text-align: right;
+}
+
+#dark-background {
+    background-color: lightcoral;
+    padding: 1%;
+}
+
+#separator-review {
+    color: white;
+}
+
+.line-separator:before, .line-separator:after {
+    display: block;
+    width: 40%;
+    content: " ";
+    margin-top: 10px;
+    border: 1px solid white;
+}
+
+#review-title {
+    color: white;
+}
+
+.description {
+    color: white;
+}
+
+#footer_row {
+    text-align: center;
+}
+
+.info {
+    text-align: center;
+}
+
+.info .title {
+    text-align: center;
+}
+
+#search_form {
+    text-align: right;
+}
+
+.circle-sizing {
+    width: 120px;
+    height: 120px;
+}
+
+#loader {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display:none;
+    z-index: 2;
+    overflow: visible;
+    background: #fff url('loader1.gif') no-repeat center center;
+}
+#background-img {
+    z-index: 1;
+}
+
+#map, #chart, #pos, #neg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

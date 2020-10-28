@@ -1,11 +1,29 @@
-.masthead {
-    padding: 15% ;
-    background-image: url('o.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+#search_bar {
+    /* text-align: right; */
+    /* width: 4cm; */
+    margin: 1%;
 }
-.masthead-intro {
-    margin-bottom: 0.1em;
+
+#search_button1 {
+    text-align: right;
+}
+
+#footer_row {
     text-align: center;
-    color: aliceblue;
 }
+
+.info {
+    text-align: center;
+}
+
+.info .title {
+    text-align: center;
+}
+
+#search_form {
+    text-align: right;
+}
+
+/* .test10 {
+    background-image: 'https://s3-media0.fl.yelpcdn.com/bphoto/8GJlTUym3WOcfMKF28v2Gw/o.jpg';
+} */
