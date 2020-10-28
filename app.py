@@ -96,8 +96,8 @@ def apipull():
         # Extracting only the part we need
         restaurant_info = response_json2['businesses'][0]
         #print(restaurant_info)
-        print(type(restaurant_info))
-        print(restaurant_info)
+        #print(type(restaurant_info))
+        #print(restaurant_info)
 
         ## insert JSON into MongoDB
         #restaurant.insert_one(restaurant_info)
@@ -118,7 +118,7 @@ def apipull():
 
         #Convert into a dataframe
         yelp_scrape_df= pd.DataFrame({"Reviews" : yelp_scrape_results['Reviews']})
-        print(yelp_scrape_df)
+        #print(yelp_scrape_df)
 
 
         #Saving to CSV

@@ -11,7 +11,8 @@ html, body {
     position: fixed;
     width: 100%;
     height: 100vh;
-    z-index: 1;
+    z-index: -1;
+    position: relative;
     overflow: visible;
     background: #fff url('loader1.gif') no-repeat center center;
 }

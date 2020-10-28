@@ -1,10 +1,15 @@
 var search_params;
+var loader;
 var button1 = d3.select("#search_button1")
 
 // user query is saved and sent to python to webscrape and api call
 button1.on("click", handleChange)
 function handleChange() {
+
     ///code to turn loader on
+    
+
+    ///Creating Variables
     var input = d3.select("#search_bar1").property("value");
     var location = d3.select("#search_bar2").property("value");
     search_params = {
@@ -23,13 +28,10 @@ function handleChange() {
         return res.json()
       }).then((data) => {
           ///code that turns loader off
+          ///loadNow(1);
+          
         console.log(data);
-        // var pair = data.object[1]
-        // console.log(pair);
-        // var pair1 = data.object[1][0];
-        // var pair2 = data.object[1][1];
-        // console.log(pair1);
-        // console.log(pair2);
+ 
         if (typeof data != "string") {
             var background_url = data["yelp_api"]["image_url"]
             console.log(background_url)
@@ -47,6 +49,7 @@ function handleChange() {
             console.log(is_closed)
             var avg_rating = data["yelp_api"]["rating"]
             console.log(avg_rating)
+
             //part one. see below for further note
             ///it looks like the restaurant name is located in data[0].location.name
             // changes background img
@@ -83,5 +86,28 @@ function handleChange() {
         d3.select("#phone_num").select("p").remove()
         d3.select("#current_search").append("h2").text(message)
         }
-      })
+
+
+})
+function loadNow(opacity) {
+    if (opacity <= 0) {
+        displayContent();
+    } else {
+        loader.style.opacity = opacity;
+        window.setTimeout(function() {
+            loadNow(opacity - 0.05);
+        }, 50);
+    }
+}
+function displayContent() {
+    loader.style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    loader = document.getElementById('loader');
+    loadNow(1);
+});
+
 };

@@ -18,14 +18,17 @@ def scrape(yelpurl):
     # Putting reviews into a list
     yelp_reviews = []
     yelp_stars = []
+
     # start from the first page on yelp and go to the fifth page
     start = 0
-    num_pages = 5
+    num_pages = 2
+
     # yelp url
     url = yelpurl + '&start=' + str(start)
     browser.visit(url)
     yelphtml = browser.html
     yelpsoup = BeautifulSoup(yelphtml, 'html.parser') 
+    
     # Find the total number of reviews
     total_reviews = int(yelpsoup.find('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--mid__373c0__jCeOG text-align--left__373c0__2XGa- text-size--large__373c0__3t60B').text.strip('reviews'))
     # trying to go figure out if it has over 100 reviews or less
