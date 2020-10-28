@@ -106,20 +106,36 @@ function handleChange() {
             var all_reviewer_ratings = [reviewer_rating2,reviewer_rating2,reviewer_rating3];
             var testimonials = ["#testimonial1","#testimonial2","#testimonial3"];
 
-            d3.select("#pro_pic1").attr("src",all_reviewer_imgs[0])
-            d3.select("#pro_pic2").attr("src",all_reviewer_imgs[1])
-            d3.select("#pro_pic3").attr("src",all_reviewer_imgs[2])
+            if (all_reviewer_imgs[0] != null) {
+                d3.select("#pro_pic1").attr("src",all_reviewer_imgs[0])
+            }
+            else {
+                d3.select("#pro_pic1").attr("src",profile_img)
+            }
+            if (all_reviewer_imgs[1] != null) {
+                d3.select("#pro_pic2").attr("src",all_reviewer_imgs[1])
+            }
+            else {
+                d3.select("#pro_pic2").attr("src",profile_img)
+            }
+            if (all_reviewer_imgs[2] != null) {
+                d3.select("#pro_pic3").attr("src",all_reviewer_imgs[2])
+            }
+            else {
+                d3.select("#pro_pic3").attr("src",profile_img)
+            }
 
             for (var i=0;i<3;i++) {
 
                 d3.select(testimonials[i]).select("h4").remove()
-                d3.select(testimonials[i]).append("h4").text(all_reviewer_names[i])
+                d3.select(testimonials[i]).append("h4").style("color","white").text(all_reviewer_names[i])
 
                 d3.select(testimonials[i]).select("p").remove()
-                d3.select(testimonials[i]).append("p").attr("class", "description").text(all_reviewer_ratings[i] + "/5")
-
                 d3.select(testimonials[i]).select("p").remove()
-                d3.select(testimonials[i]).append("p").attr("class", "description").text(all_reviewer_text[i])
+
+                d3.select(testimonials[i]).append("p").attr("class", "description").style("color","white").text(all_reviewer_ratings[i] + "/5")
+
+                d3.select(testimonials[i]).append("p").attr("class", "description").style("color","white").text(all_reviewer_text[i])
             }
 
 
@@ -222,9 +238,12 @@ function handleChange() {
             }
             return color;
         }
-    
-    
-        var chart = new Chart('chart', {
+        
+        d3.select("#chart").remove()
+        d3.select("#wrapper").append("canvas").attr("id","chart")
+        // <canvas id="chart" style="width: 250px; height: 250px; position: relative; outline: none;"></canvas>
+
+        var piechart = new Chart('chart', {
             type: "doughnut",
             options:{
                 responsive:true,
@@ -253,35 +272,38 @@ function handleChange() {
             }
         });
 
-
+        d3.select("#neg").remove()
+        d3.select("#word_cloud2").append("div").attr("id","neg")
         anychart.onDocumentReady(function() {
         
             // create a tag (word) cloud chart
-            var chart = anychart.tagCloud(data2.negative);
+            var negCloud = anychart.tagCloud(data2.negative);
             // set a chart title
-            chart.title('Negative Words')
+            negCloud.title('Negative Words')
             // set an array of angles at which the words will be laid out
-            chart.angles([-45,45])
+            negCloud.angles([-45,45])
             // set the color range length
-            chart.colorRange().length('80%');
+            negCloud.colorRange().length('80%');
             // display the word cloud chart
-            chart.container("neg");
-            chart.draw();
+            negCloud.container("neg");
+            negCloud.draw();
         })
 
+        d3.select("#pos").remove()
+        d3.select("#word_cloud1").append("div").attr("id","pos")
         anychart.onDocumentReady(function() {
           
             // create a tag (word) cloud chart
-            var chart = anychart.tagCloud(data2.positive);
+            var posCloud = anychart.tagCloud(data2.positive);
             // set a chart title
-            chart.title('Postive Words')
+            posCloud.title('Postive Words')
             // set an array of angles at which the words will be laid out
-            chart.angles([-45,45])
+            posCloud.angles([-45,45])
             // enable color scale
-            chart.colorRange().length('80%');
+            posCloud.colorRange().length('80%');
             // display the word cloud chart
-            chart.container("pos");
-            chart.draw();
+            posCloud.container("pos");
+            posCloud.draw();
         })
 
     })

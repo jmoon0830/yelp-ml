@@ -8,6 +8,31 @@
     text-align: right;
 }
 
+#dark-background {
+    background-color: lightcoral;
+    padding: 1%;
+}
+
+#separator-review {
+    color: white;
+}
+
+.line-separator:before, .line-separator:after {
+    display: block;
+    width: 40%;
+    content: " ";
+    margin-top: 10px;
+    border: 1px solid white;
+}
+
+#review-title {
+    color: white;
+}
+
+.description {
+    color: white;
+}
+
 #footer_row {
     text-align: center;
 }
@@ -47,3 +72,4 @@
     margin-left: auto;
     margin-right: auto;
 }
+

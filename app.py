@@ -46,7 +46,7 @@ app = Flask(__name__)
 #home page
 @app.route("/")
 def index():
-    return render_template("freebie.html")
+    return render_template("index.html")
 
 
 #API Call route

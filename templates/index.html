@@ -75,12 +75,15 @@
     </div>
 
 
-    <div class="section">
+    <div class="section" id="about-the-place">
         <div class="container">
             <div class="row">
                 <div class="title-area">
-                    <h3 id="rating"></h3>
+                    <h2> About the Place </h2>
                     <div class="separator separator-danger">✻</div>
+                    <div id="rating">
+                        <h3> Average Rating: </h3>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -122,136 +125,142 @@
     </div>
 
 
-    <div class="section section-our-team-freebie">
-        <div class="parallax filter filter-color-black">
+    <div class="section section-our-team-freebie" id="what-customers">
+        <div id="dark-background">
             <div class="container">
-                <div class="content">
-                    <div class="row">
-                        <div class="title-area">
-                            <h2>Visualizations</h2>
-                            <div class="separator separator-danger">✻</div>
-                            <p class="description">Insert Text</p>
-                        </div>
-                    </div>
-                    <div class="team">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-member">
-                                            <div class="content">
-                                                <!-- <div class="avatar avatar-danger"> -->
-                                                <div id="map" style="width: 250px; height: 250px; position: relative; outline: none;"></div>
-
-                                                <!-- </div> -->
-                                                <div class="description">
-                                                    <h3 class="title">Map</h3>
-                                                    <p class="description">This is a bar chart. Insert explanation here.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-member">
-                                            <div class="content">
-                                                <!-- <div class="avatar avatar-danger"> -->
-                                                <div id="wrapper">
-                                                    <canvas id="chart" style="width: 250px; height: 250px; position: relative; outline: none;"></canvas>
-                                                </div>
-                                                <!-- </div> -->
-                                                <div class="description">
-                                                    <h3 class="title">Pie Chart</h3>
-                                                    <p class="description">This is a pie chart. Insert explanation here.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div class = "row">
-                                    <div class="col-md-6">
-                                        <div class="card card-member">
-                                            <div class="content">
-                                                <!-- <div class="avatar avatar-danger"> -->
-                                                <div id="pos" style="width: 300px; height: 300px; position: relative; outline: none;"></div>
-                                                <!-- </div> -->
-                                                <div class="description">
-                                                    <h3 class="title">Word Cloud</h3>
-                                                    <p class="small-text">Insert Text</p>
-                                                    <p class="description">This is a word cloud. Insert Explanation here.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-member">
-                                            <div class="content">
-                                                <!-- <div class="avatar avatar-danger"> -->
-                                                <div id="neg" style="width: 300px; height: 300px; position: relative; outline: none;"></div>
-                                                <!-- </div> -->
-                                                <div class="description">
-                                                    <h3 class="title">Word Cloud</h3>
-                                                    <p class="small-text">Insert Text</p>
-                                                    <p class="description">This is a word cloud. Insert Explanation here.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="title-area">
+                        <h2 id="review-title">What Customers Had To Say</h2>
+                        <div class="separator line-separator" id="separator-review">♦</div>
                     </div>
                 </div>
+    
+                <ul class="nav nav-text" role="tablist">
+                    <li class="active">
+                        <a href="#testimonial1" role="tab" data-toggle="tab">
+                            <div class="image-clients">
+                                <img alt="..." class="img-circle" src="" id="pro_pic1"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#testimonial2" role="tab" data-toggle="tab">
+                            <div class="image-clients">
+                                <img alt="..." class="img-circle" src="" id ="pro_pic2"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#testimonial3" role="tab" data-toggle="tab">
+                            <div class="image-clients">
+                                <img alt="..." class="img-circle" src="" id="pro_pic3"/>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+    
+    
+                <div class="tab-content">
+                    <div class="tab-pane active" id="testimonial1">
+                        <p class="description">
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="testimonial2">
+                        <p class="description">
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="testimonial3">
+                        <p class="description">
+                        </p>
+                    </div>
+    
+                </div>
+
             </div>
         </div>
     </div>
     
-    <div class="section section-our-clients-freebie">
+    <div class="section section-our-clients-freebie" id="interactive-data">
         <div class="container">
-            <div class="title-area">
-                <h5 class="subtitle text-gray">Whatever we want</h5>
-                <h2>Any Text</h2>
-                <div class="separator separator-danger">∎</div>
-            </div>
 
-            <ul class="nav nav-text" role="tablist">
-                <li class="active">
-                    <a href="#testimonial1" role="tab" data-toggle="tab">
-                        <div class="image-clients">
-                            <img alt="..." class="img-circle" src="" id="pro_pic1"/>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#testimonial2" role="tab" data-toggle="tab">
-                        <div class="image-clients">
-                            <img alt="..." class="img-circle" src="" id ="pro_pic2"/>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#testimonial3" role="tab" data-toggle="tab">
-                        <div class="image-clients">
-                            <img alt="..." class="img-circle" src="" id="pro_pic3"/>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-
-
-            <div class="tab-content">
-                <div class="tab-pane active" id="testimonial1">
-                    <p class="description">
-                    </p>
+            <div class="content">
+                <div class="row">
+                    <div class="title-area">
+                        <h2>Interactive Data</h2>
+                        <div class="separator separator-danger">✻</div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="testimonial2">
-                    <p class="description">
-                    </p>
-                </div>
-                <div class="tab-pane" id="testimonial3">
-                    <p class="description">
-                    </p>
-                </div>
+                <div class="team">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card card-member">
+                                        <div class="content">
+                                            <!-- <div class="avatar avatar-danger"> -->
+                                            <div id="map" style="width: 250px; height: 250px; position: relative; outline: none;"></div>
 
+                                            <!-- </div> -->
+                                            <div class="description">
+                                                <h3 class="title">Map</h3>
+                                                <p class="description">This is a bar chart. Insert explanation here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card card-member">
+                                        <div class="content">
+                                            <!-- <div class="avatar avatar-danger"> -->
+                                            <div id="wrapper">
+                                                <canvas id="chart" style="width: 250px; height: 250px; position: relative; outline: none;"></canvas>
+                                            </div>
+                                            <!-- </div> -->
+                                            <div class="description">
+                                                <h3 class="title">Pie Chart</h3>
+                                                <p class="description">This is a pie chart. Insert explanation here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                            <div class = "row">
+                                <div class="col-md-6">
+                                    <div class="card card-member">
+                                        <div class="content">
+                                            <!-- <div class="avatar avatar-danger"> -->
+                                            <div id="word_cloud1">
+                                                <div id="pos" style="width: 300px; height: 300px; position: relative; outline: none;"></div>
+                                            </div>
+                                            <!-- </div> -->
+                                            <div class="description">
+                                                <h3 class="title">Word Cloud</h3>
+                                                <p class="small-text">Insert Text</p>
+                                                <p class="description">This is a word cloud. Insert Explanation here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card card-member">
+                                        <div class="content">
+                                            <div id="word_cloud2">
+                                                <div id="neg" style="width: 300px; height: 300px; position: relative; outline: none;"></div>
+                                            </div>
+                                            <div class="description">
+                                                <h3 class="title">Word Cloud</h3>
+                                                <p class="small-text">Insert Text</p>
+                                                <p class="description">This is a word cloud. Insert Explanation here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -266,13 +275,19 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="#">Search</a>
+                                    <a href="#background_img">Back to the Top</a>
                                 </li>
                                 <li>
-                                    <a href="#">Meet the Team</a>
+                                    <a href="#about-the-place">About the Place</a>
                                 </li>
                                 <li>
-                                    <a href="#">Yelp API</a>
+                                    <a href="#what-customers">What Customers Had to Say</a>
+                                </li>
+                                <li>
+                                    <a href="#interactive-data">Interactive Data</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.yelp.com/fusion">Yelp API</a>
                                 </li>
                             </ul>
                         </nav>
