@@ -8,7 +8,10 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-#Creating functions to webscrape
+
+
+
+#Creating functions to webscrapej
 # Initialize splinter function
 def initiate_browser():
     executable_path = {'executable_path': 'chromedriver'}

@@ -24,14 +24,16 @@ def text_process(text):
 def ml_predictor(web_scrapedf):
     #loaded_model = pickle.load(open('model.pickle', 'rb'))
 
-    #Loading the model
-    loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
-    #loaded_model = joblib.load("ml_model/model.joblib")
+    # #Loading the model
+    # loaded_model = pickle.load(open("model.pickle", 'rb'))
+    # #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
+    
 
-    #Loading the vectorizor
-    #loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
-    loaded_vectorizor = pickle.load(open("ml_model/vectorizer.pickle", 'rb'))
-    #loaded_vectorizor = joblib.load("ml_model/vect.joblib")
+
+    # #Loading the vectorizor
+    # loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
+    # #loaded_vectorizor = pickle.load(open("ml_model/vectorizer.pickle", 'rb'))
+    
 
     
     #Creating predictions for each review
