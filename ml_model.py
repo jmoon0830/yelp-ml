@@ -12,7 +12,6 @@ import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
-import joblib
 #from app import text_process
 #from textprocess import text_process
 
@@ -92,7 +91,8 @@ def negative_words(scrape_results_df):
     return negative_sorted
 
 
-
+if __name__ == "__main__":
+    text_process = text_process
 
 
 #predicted_reviews = ml_predictor(web_scrapedf)
