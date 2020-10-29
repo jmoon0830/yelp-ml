@@ -15,7 +15,7 @@ import time
 from scrape import scrape
 
 #ML-code-related dependencies
-from textprocess import text_process
+# from textprocess import text_process
 from ml_model import ml_predictor, positive_words, negative_words
 import seaborn as sns
 import matplotlib.pyplot as plt
