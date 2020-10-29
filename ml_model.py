@@ -20,18 +20,33 @@ def text_process(text):
     nopunc = ''.join(nopunc)
     return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
-#Looping through the web-scraped reviews to make predictions
-def ml_predictor(web_scrapedf):
-    #loaded_model = pickle.load(open('model.pickle', 'rb'))
 
     # #Loading the model
-    # loaded_model = pickle.load(open("model.pickle", 'rb'))
+    loaded_model = pickle.load(open("model.pickle", 'rb'))
     # #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
     
 
 
     # #Loading the vectorizor
-    # loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
+    loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
+
+#Looping through the web-scraped reviews to make predictions
+def ml_predictor(web_scrapedf):
+
+    def text_process(text):
+        nopunc = [char for char in text if char not in string.punctuation]
+        nopunc = ''.join(nopunc)
+        return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+    #loaded_model = pickle.load(open('model.pickle', 'rb'))
+
+    # #Loading the model
+    loaded_model = pickle.load(open("model.pickle", 'rb'))
+    # #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
+    
+
+
+    # #Loading the vectorizor
+    loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
     # #loaded_vectorizor = pickle.load(open("ml_model/vectorizer.pickle", 'rb'))
     
 
@@ -53,6 +68,11 @@ def ml_predictor(web_scrapedf):
 #Function to create positive words for word cloud
 def positive_words(scrape_results_df):
 
+    def text_process(text):
+        nopunc = [char for char in text if char not in string.punctuation]
+        nopunc = ''.join(nopunc)
+        return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+
     #Creating list of positive words
     positive_wordcloud = scrape_results_df[scrape_results_df['ml_predictions'] == 'Positive']
 
@@ -73,6 +93,11 @@ def positive_words(scrape_results_df):
 
 #Function to create negative words for word cloud
 def negative_words(scrape_results_df):
+
+    def text_process(text):
+        nopunc = [char for char in text if char not in string.punctuation]
+        nopunc = ''.join(nopunc)
+        return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
     
     #Creating the list of negative words
     negative_wordcloud = scrape_results_df[scrape_results_df['ml_predictions'] == 'Negative']
