@@ -194,5 +194,5 @@ def ml():
         return final_message
         
 if __name__ == "__main__":
-
+    text_process = text_process
     app.run(debug=False)
