@@ -16,14 +16,17 @@ import time
 def initiate_browser():
     executable_path = {'executable_path': 'chromedriver'}
     return Browser("chrome", **executable_path, headless=False)
+
 def scrape(yelpurl):
     browser = initiate_browser()
+
     # Putting reviews into a list
     yelp_reviews = []
     yelp_stars = []
     # start from the first page on yelp and go to the fifth page
     start = 0
-    num_pages = 1
+    num_pages = 5
+
     # yelp url
     url = yelpurl + '&start=' + str(start)
     browser.visit(url)
@@ -49,9 +52,11 @@ def scrape(yelpurl):
         end = round(int(total_reviews)/20)*20
     else: 
         end = 20* num_pages
+
     # if it has less than 100 reviews, the last page should have the total number of reviews minus the rounded reviews to give the
     # left over ratings
     leftover = total_reviews - end
+
     # loop through yelp page to scrape the comments
     while (start < end):
         url = yelpurl + '&start=' + str(start)
@@ -66,15 +71,19 @@ def scrape(yelpurl):
         innerDiv = "div.lemon--div__373c0__1mboc.i-stars__373c0__1T6rz"
         somediv = yelpsoup.select(f'{firstDiv} > {innerSpan} > {innerDiv}')
         # finds all reviews
+
         allcomment = yelpsoup.find_all('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz comment__373c0__3EKjH text-color--normal__373c0__3xep9 text-align--left__373c0__2XGa-')
+        
         # Scraping less than 100 reviews
         if total_reviews < 100:
+
             #has less than 20 reviews
             if num_pages == 0:
                 for x in range(1, leftover + 1):
                     yelp_stars.append(somediv[x]['aria-label'].strip('star rating'))
                 for y in range(0,len(allcomment)):    
                     yelp_reviews.append(allcomment[y].text)
+
             #has less than 40 reviews
             elif num_pages == 1:
                 if start == 0:
@@ -138,4 +147,5 @@ def scrape(yelpurl):
     browser.quit()
     yelp_scrape_results = {"Reviews": yelp_reviews, "Stars": yelp_stars}
     #yelp_scrape_results = {"Reviews": yelp_reviews}
+    
     return yelp_scrape_results
