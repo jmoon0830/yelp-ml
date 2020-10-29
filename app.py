@@ -165,7 +165,6 @@ def ml():
 
         #Convert into a dataframe
         yelp_scrape_df= pd.DataFrame({"Reviews" : yelp_scrape_results['Reviews']})
-        print(yelp_scrape_df)
 
 
         #Calling ML functions

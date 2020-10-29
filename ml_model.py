@@ -13,7 +13,13 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 import joblib
-from app import text_process
+#from app import text_process
+#from textprocess import text_process
+
+def text_process(text):
+    nopunc = [char for char in text if char not in string.punctuation]
+    nopunc = ''.join(nopunc)
+    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
 #Looping through the web-scraped reviews to make predictions
 def ml_predictor(web_scrapedf):

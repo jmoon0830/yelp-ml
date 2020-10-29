@@ -158,7 +158,7 @@ function handleChange() {
         // Create Map, Passing In satelliteMap & earthquakes as Default Layers to Display on Load
 
         d3.select("#map").remove();
-        d3.select("#leaf-map").append("div").attr("id","map").style("width","300px").style("height","250px").style("position","relative").style("outline","none");
+        d3.select("#leaf-map").append("div").attr("id","map").style("width","400px").style("height","350px").style("position","relative").style("outline","none");
         var myMap = L.map("map", {
           center: [data2.yelp_api.coordinates.latitude, data2.yelp_api.coordinates.longitude],
           zoom: 15,

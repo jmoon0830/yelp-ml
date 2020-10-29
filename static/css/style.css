@@ -73,3 +73,7 @@
     margin-right: auto;
 }
 
+.cardstyle {
+    min-height: 356px;
+    max-height: 612px;
+}
