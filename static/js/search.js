@@ -158,7 +158,7 @@ function handleChange() {
         // Create Map, Passing In satelliteMap & earthquakes as Default Layers to Display on Load
 
         d3.select("#map").remove();
-        d3.select("#leaf-map").append("div").attr("id","map").style("width","250px").style("height","250px").style("position","relative").style("outline","none");
+        d3.select("#leaf-map").append("div").attr("id","map").style("width","300px").style("height","250px").style("position","relative").style("outline","none");
         var myMap = L.map("map", {
           center: [data2.yelp_api.coordinates.latitude, data2.yelp_api.coordinates.longitude],
           zoom: 15,
@@ -275,7 +275,7 @@ function handleChange() {
         });
 
         d3.select("#neg").remove()
-        d3.select("#word_cloud2").append("div").attr("id","neg").style("width","250px").style("height","250px").style("position","relative").style("outline","none");
+        d3.select("#word_cloud2").append("div").attr("id","neg").style("width","300px").style("height","250px").style("position","relative").style("outline","none");
 
         anychart.onDocumentReady(function() {
         
@@ -293,7 +293,7 @@ function handleChange() {
         })
 
         d3.select("#pos").remove()
-        d3.select("#word_cloud1").append("div").attr("id","pos").append("div").attr("id","neg").style("width","250px").style("height","250px").style("position","relative").style("outline","none");
+        d3.select("#word_cloud1").append("div").attr("id","pos").style("width","300px").style("height","250px").style("position","relative").style("outline","none");
         anychart.onDocumentReady(function() {
           
             // create a tag (word) cloud chart
