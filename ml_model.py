@@ -10,7 +10,7 @@ import pickle
 
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 #from app import text_process
 #from textprocess import text_process
@@ -29,6 +29,15 @@ def text_process(text):
 
     # #Loading the vectorizor
     loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
+
+# #Loading the model
+loaded_model = pickle.load(open("model.pickle", 'rb'))
+# #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
+
+
+
+# #Loading the vectorizor
+loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
 
 #Looping through the web-scraped reviews to make predictions
 def ml_predictor(web_scrapedf):
@@ -119,7 +128,7 @@ def negative_words(scrape_results_df):
 
 
 if __name__ == "__main__":
-    text_process = text_process
+    
 
 
 #predicted_reviews = ml_predictor(web_scrapedf)
