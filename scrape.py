@@ -11,7 +11,7 @@ import time
 #Creating functions to webscrape
 # Initialize splinter function
 def initiate_browser():
-    executable_path = {'executable_path': 'chromedriver.exe'}
+    executable_path = {'executable_path': './chromedriver.exe'}
     return Browser("chrome", **executable_path, headless=False)
 def scrape(yelpurl):
     browser = initiate_browser()
