@@ -1,2 +1,2 @@
 heroku ps:scale web=1
-web: gunicorn src.app:app --log-file=-
+web: gunicorn --bind 0.0.0.0:$PORT app:app
