@@ -27,7 +27,19 @@ def scrape(yelpurl):
     yelphtml = browser.html
     yelpsoup = BeautifulSoup(yelphtml, 'html.parser') 
     # Find the total number of reviews
-    total_reviews = int(yelpsoup.find('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--mid__373c0__jCeOG text-align--left__373c0__2XGa- text-size--large__373c0__3t60B').text.strip('reviews'))
+    total_reviews = yelpsoup.find('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--mid__373c0__jCeOG text-align--left__373c0__2XGa- text-size--large__373c0__3t60B')
+    
+    total_review_text = total_reviews.text
+
+    print(total_reviews)
+    
+    if(!total_review_text):
+        print("Uh oh... there was no totoal review text.")
+
+    total_reviews_stripped = total_review_text.strip('reviews'))
+
+    num_total_review = int(total_reviews_stripped)
+
     # trying to go figure out if it has over 100 reviews or less
     if total_reviews < 100:
         # Calculate the total number of pages. Rounds down to the number of pages so if a number comes out to 3.5, it rounds down to 3
