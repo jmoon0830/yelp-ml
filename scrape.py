@@ -29,9 +29,9 @@ def scrape(yelpurl):
     # Find the total number of reviews
     reviews = yelpsoup.find('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--mid__373c0__jCeOG text-align--left__373c0__2XGa- text-size--large__373c0__3t60B')
     
-    total_review_text = reviews.text
+    print(reviews)
 
-    print(total_review_text)
+    total_review_text = reviews.text
     
     if total_review_text:
         print("Uh oh... there was no totoal review text.")
