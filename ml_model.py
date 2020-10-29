@@ -13,25 +13,7 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 import joblib
-# from textprocess import text_process
-
-
-
-def text_process(text):
-    nopunc = [char for char in text if char not in string.punctuation]
-    nopunc = ''.join(nopunc)
-    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
-
-#cv = CountVectorizer(analyzer=text_process)   
-
-
-
-#Bringing in Jimmy's web scraping code
-#web_scrapedf = pd.read_csv("web_scrape_csv")
-#print(web_scrapedf.head())
-
-#loaded_vectorizor2 = CountVectorizer(analyzer=text_process)
-
+from app import text_process
 
 #Looping through the web-scraped reviews to make predictions
 def ml_predictor(web_scrapedf):

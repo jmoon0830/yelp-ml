@@ -28,13 +28,11 @@ def scrape(yelpurl):
     yelpsoup = BeautifulSoup(yelphtml, 'html.parser') 
     # Find the total number of reviews
     reviews = yelpsoup.find('p', class_='lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--mid__373c0__jCeOG text-align--left__373c0__2XGa- text-size--large__373c0__3t60B')
-    
-    print(reviews)
 
     total_review_text = reviews.text
     
-    if total_review_text:
-        print("Uh oh... there was no totoal review text.")
+    if not total_review_text:
+        print("Uh oh... there was no total review text.")
 
     total_reviews_stripped = total_review_text.strip('reviews')
 

@@ -15,7 +15,7 @@ import time
 from scrape import scrape
 
 #ML-code-related dependencies
-# from textprocess import text_process
+#from textprocess import text_process
 from ml_model import ml_predictor, positive_words, negative_words
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -30,9 +30,12 @@ from nltk.corpus import stopwords
 #nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 
-
-
 app = Flask(__name__)
+
+def text_process(text):
+    nopunc = [char for char in text if char not in string.punctuation]
+    nopunc = ''.join(nopunc)
+    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
 
 #home page
