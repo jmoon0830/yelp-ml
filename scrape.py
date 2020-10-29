@@ -36,7 +36,7 @@ def scrape(yelpurl):
     if total_review_text:
         print("Uh oh... there was no totoal review text.")
 
-    total_reviews_stripped = total_review_text.strip('reviews'))
+    total_reviews_stripped = total_review_text.strip('reviews')
 
     total_reviews = int(total_reviews_stripped)
 
