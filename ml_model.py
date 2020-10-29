@@ -30,14 +30,14 @@ def text_process(text):
     # #Loading the vectorizor
     loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
 
-# #Loading the model
-loaded_model = pickle.load(open("model.pickle", 'rb'))
-# #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
+# # #Loading the model
+# loaded_model = pickle.load(open("model.pickle", 'rb'))
+# # #loaded_model = pickle.load(open("ml_model/model.pickle", 'rb'))
 
 
 
-# #Loading the vectorizor
-loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
+# # #Loading the vectorizor
+# loaded_vectorizor = pickle.load(open("vectorizer.pickle", 'rb'))
 
 #Looping through the web-scraped reviews to make predictions
 def ml_predictor(web_scrapedf):
@@ -125,10 +125,6 @@ def negative_words(scrape_results_df):
     negative_sorted = negative_sorted[:49]
 
     return negative_sorted
-
-
-if __name__ == "__main__":
-    
 
 
 #predicted_reviews = ml_predictor(web_scrapedf)

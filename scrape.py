@@ -139,6 +139,3 @@ def scrape(yelpurl):
     yelp_scrape_results = {"Reviews": yelp_reviews, "Stars": yelp_stars}
     #yelp_scrape_results = {"Reviews": yelp_reviews}
     return yelp_scrape_results
-
-
-    if __name__ == "__main__":
