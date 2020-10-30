@@ -256,7 +256,7 @@ function handleChange() {
                 },
                 title: {
                     display: true,
-                    text: "Pie Chart by rating",
+                    text: "Pie Chart by Rating",
                     fontSize: 20
                 }
             },
