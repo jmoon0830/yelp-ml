@@ -25,7 +25,7 @@ def scrape(yelpurl):
     yelp_stars = []
     # start from the first page on yelp and go to the fifth page
     start = 0
-    num_pages = 3
+    num_pages = 5
 
     # yelp url
     url = yelpurl + '&start=' + str(start)
