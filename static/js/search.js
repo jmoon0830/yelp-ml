@@ -280,6 +280,8 @@ function handleChange() {
         anychart.onDocumentReady(function() {
         
             // create a tag (word) cloud chart
+            console.log('negative words')
+            console.log(data2.negative)
             var negCloud = anychart.tagCloud(data2.negative);
             // set a chart title
             negCloud.title('Negative Words')
